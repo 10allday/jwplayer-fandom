@@ -4,6 +4,7 @@ export default class Base {
 		this.playerInstance = playerInstance;
 		this.displayAt = item.displayAt;
 		this.options = Object.assign({}, options, {  });
+		this.displayed = false;
 	}
 
 	createElement() {
@@ -11,12 +12,16 @@ export default class Base {
 	}
 
 	hide() {
-		this.element.display = 'none';
+		this.element.classList.remove('enter');
+		this.element.classList.add('exit');
 
+		setTimeout(() => this.remove(), 500);
 	}
 
 	show() {
-		this.element.display = 'block';
+		this.element.classList.remove('exit');
+		this.element.classList.add('enter');
+		this.displayed = true;
 	}
 
 	remove() {
@@ -25,5 +30,9 @@ export default class Base {
 
 			this.element = null;
 		}
+	}
+
+	isDisplayed() {
+		return this.displayed;
 	}
 }

@@ -4,17 +4,17 @@ import AnnotationStream from './AnnotationStream';
 
 const commentMock = [
 	{
-		text: 'My 3rd comment',
+		text: 'My 1st comment',
 		createdBy: { username: "Ciastek", avatarUrl: 'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png'},
 		displayAt: 2
 	},
 	{
-		text: 'My 4th comment',
+		text: 'My 2nd comment',
 		createdBy: { username: "Krzyś", avatarUrl: 'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png'},
 		displayAt: 4
 	},
 	{
-		text: 'My 5th comment',
+		text: 'My 3rd comment',
 		createdBy: { username: "Krzyś", avatarUrl: 'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png'},
 		displayAt: 8
 	}
@@ -25,10 +25,10 @@ const annotationMock = [
 		text: 'My 1st annotation',
 		createdBy: { username: "Barti", avatarUrl: 'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png'},
 		linksTo: 'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png',
-		displayAt: 0
+		displayAt: 1
 	},
 	{
-		text: 'My 2nd annotation fhgasuidhfuia fhauisghfuiad fghuais dfu bdufa dhui agudi fgaud fgua u ia df',
+		text: 'My 2nd annotation',
 		createdBy: { username: "Ciastek", avatarUrl: 'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png'},
 		linksTo: 'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png',
 		displayAt: 3
@@ -37,7 +37,7 @@ const annotationMock = [
 		text: 'My 3rd annotation',
 		createdBy: { username: "Ciastek", avatarUrl: 'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png'},
 		linksTo: 'https://www.shareicon.net/data/2016/08/05/806962_user_512x512.png',
-		displayAt: 6
+		displayAt: 7.5
 	}
 ];
 

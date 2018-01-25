@@ -7,6 +7,17 @@
 	display: flex;
 	overflow: hidden;
 	margin-bottom: 10px;
+	opacity: 0;
+	transition: all 0.5s;
+
+	&.enter {
+		opacity: 1;
+	}
+
+	&.exit {
+		transform: translateX(200%);
+		opacity: 0;
+	}
 
 	&--annotation {
 		padding: 10px;

@@ -18,7 +18,6 @@ export default class AnnotationStream {
 			const nextAnnotation = this.findLastSuitableElement(position);
 			
 			if (nextAnnotation && !this.currentlyVisibleAnnotations.includes(nextAnnotation)) {
-				this.currentlyVisibleAnnotations.push(nextAnnotation);
 				this.manageElements(nextAnnotation);
 			}
 		})
@@ -46,26 +45,26 @@ export default class AnnotationStream {
 	}
 
 	manageElements(nextAnnotation) {
-		if (this.currentlyVisibleAnnotations.length > this.options.amount) {
+		if (nextAnnotation.isDisplayed() || this.currentlyVisibleAnnotations.length >= this.options.amount) {
 			return;
 		}
 
+		this.currentlyVisibleAnnotations.push(nextAnnotation);
+
 		this.wrapper.prepend(nextAnnotation.element);
-		
-		console.log('#######', '', nextAnnotation.element);
+
+		setTimeout(() => nextAnnotation.show(), 0);
 
 		this.removeWithDelay(nextAnnotation);
 	}
 
-	removeWithDelay(nextAnnotation) {
+	removeWithDelay() {
 		setTimeout(() => {
-			const index = this.currentlyVisibleAnnotations.indexOf(nextAnnotation);
-			
-			console.log('#######', '', index);
-			
-			index !== -1 && this.currentlyVisibleAnnotations[index].remove();
+			const first = this.currentlyVisibleAnnotations.shift();
 
-			this.currentlyVisibleAnnotations.shift();
+			if (first) {
+				first.hide();
+			}
 
 		}, this.options.delay);
 	}
