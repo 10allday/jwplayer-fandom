@@ -6,6 +6,7 @@ import wikiaJWPlayerHandleTabNotActive from './tab-active';
 import wikiaJWPlayerLogger from './logger';
 import wikiaJWPlayerSettingsPlugin from './settings.plugin';
 import wikiaJWPlayerAllowControllOnTouchDevices from './allow-control-on-touch';
+import wikiaJWPlayerAnnotation from './annotation/index';
 import wikiaJWPlayeri18n from './../locales/i18n';
 
 const loadCallbacks = [];
@@ -140,5 +141,11 @@ window.wikiaJWPlayer = function (elementId, options, callback) {
 		if (callback) {
 			callback(playerInstance);
 		}
+
+		wikiaJWPlayerAnnotation(playerInstance, {
+			annotations: options.annotations,
+			comments: options.comments,
+			spoilers: options.spoilers
+		});
 	});
 };
