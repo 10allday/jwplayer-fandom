@@ -43,10 +43,7 @@ const annotationMock = [
 
 
 export default function wikiaJWPlayerAnnotation(playerInstance, options = {}) {
-	// if (options.annotations) {
-
 	new AnnotationStream(playerInstance, { amount: 3 })
 		.add(annotationMock.map((el) => new Annotation({ item: el, playerInstance })))
 		.add(commentMock.map((el) => new Comment({ item: el, playerInstance })));
-	// }
 }

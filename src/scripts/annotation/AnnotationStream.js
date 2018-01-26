@@ -9,8 +9,6 @@ export default class AnnotationStream {
 		this.options = Object.assign({}, {amount: 2, delay: 5000}, options);
 
 		this.attachListeners();
-
-		setTimeout(() => this.attachWrapper(), 2000);
 	}
 
 	attachListeners() {
@@ -20,7 +18,9 @@ export default class AnnotationStream {
 			if (nextAnnotation && !this.currentlyVisibleAnnotations.includes(nextAnnotation)) {
 				this.manageElements(nextAnnotation);
 			}
-		})
+		});
+
+		this.playerInstance.on('ready', () => this.attachWrapper());
 	}
 
 	createWrapper() {
@@ -38,8 +38,7 @@ export default class AnnotationStream {
 	}
 
 	findLastSuitableElement(position) {
-		const available = this.list
-			.filter((annotation) => annotation.displayAt < position);
+		const available = this.list.filter((annotation) => annotation.displayAt < position);
 
 		return available[available.length - 1];
 	}
@@ -49,7 +48,7 @@ export default class AnnotationStream {
 			return;
 		}
 
-		this.currentlyVisibleAnnotations.push(nextAnnotation);
+		this.currentlyVisibleAnnotations = [ ...this.currentlyVisibleAnnotations, nextAnnotation ];
 
 		this.wrapper.prepend(nextAnnotation.element);
 

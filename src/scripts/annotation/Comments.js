@@ -6,7 +6,7 @@ export default class Comment extends Base {
 		super(...arguments);
 	}
 
-	createElement({ text, createdBy, linksTo }) {
+	createElement({ text, createdBy }) {
 		const domString = `
 				<div class="wikia-annotation wikia-annotation--comment">
 					<div class="wikia-annotation__author">

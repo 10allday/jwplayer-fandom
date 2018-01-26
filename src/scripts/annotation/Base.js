@@ -1,9 +1,8 @@
 export default class Base {
-	constructor({ item, playerInstance, options = {} }) {
+	constructor({ item, playerInstance }) {
 		this.element = this.createElement(item);
 		this.playerInstance = playerInstance;
 		this.displayAt = item.displayAt;
-		this.options = Object.assign({}, options, {  });
 		this.displayed = false;
 	}
 
