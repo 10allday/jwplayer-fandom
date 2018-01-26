@@ -145,7 +145,7 @@ wikiaJWPlayerCommentPlugin.prototype.createCommentForm = function () {
 					return response.json()
 				})
 				.then((commentData) => {
-					input.setAttribute('value', '');
+					input.value = '';
 					this.player.trigger('comment', { commentData })
 					this.close();
 				})
