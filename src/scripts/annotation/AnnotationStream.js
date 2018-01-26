@@ -1,4 +1,5 @@
 import { stringToHtml } from "./utils";
+import Comment from "./Comments";
 
 export default class AnnotationStream {
 	constructor(playerInstance, options = {}) {
@@ -32,6 +33,15 @@ export default class AnnotationStream {
 			}
 		});
 
+		this.playerInstance.on('comment', ({ commentData }) => {
+			this.add([
+				new Comment({
+					item: commentData,
+					playerInstance: this.playerInstance
+				})
+			]);
+		});
+
 		this.playerInstance.on('ready', () => this.attachWrapper());
 
 		this.playerInstance.on('spoilerFastForwarded', () => this.restorePlayer());
@@ -48,7 +58,6 @@ export default class AnnotationStream {
 
 	add(items) {
 		this.list = [...this.list, ...items].sort((a, b) => a.displayAt > b.displayAt);
-
 		return this;
 	}
 
