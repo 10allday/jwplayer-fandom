@@ -67,13 +67,14 @@ wikiaJWPlayerCommentPlugin.prototype.removeButton = function () {
 wikiaJWPlayerCommentPlugin.prototype.close = function () {
 	this.container.style.display = null;
 	this.player.getContainer().classList.remove('wikia-jw-comment-open');
+	this.player.play();
 };
 
 /**
  * opens comment menu
  */
 wikiaJWPlayerCommentPlugin.prototype.open = function () {
-	
+	this.player.pause();
 	showElement(this.container);
 	this.player.getContainer().classList.add('wikia-jw-comment-open');
 };
