@@ -129,7 +129,10 @@ wikiaJWPlayerCommentPlugin.prototype.createCommentForm = function () {
 		const val = input.value;
 
 		if (val) {
-			fetch('https://services.wikia-dev.pl/video-annotations/videos/1/comments', { method: 'POST' })
+			fetch('https://services.wikia-dev.pl/video-annotations/videos/1/comments', {
+				method: 'POST',
+				credentials: 'same-origin'
+			})
 				.then((response) => {
 					return response.json()
 				})
