@@ -130,6 +130,10 @@ wikiaJWPlayerCommentPlugin.prototype.createCommentForm = function () {
 
 		if (val) {
 			fetch('https://services.wikia-dev.pl/video-annotations/videos/1/comments', {
+				headers: {
+					'Accept': 'application/json, text/plain, */*',
+					'Content-Type': 'application/json'
+				},
 				method: 'POST',
 				credentials: 'include',
 				body: JSON.stringify({
