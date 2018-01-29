@@ -10,7 +10,7 @@ export default class Spoiler extends Base {
 		this.attachListeners();
 	}
 
-	createElement({content, moveTo}) {
+	createElement({content, moveTo, displayAt}) {
 		const domString = `
 				<div class="wikia-spoiler wikia-annotation--spoiler">
 					<div class="wikia-spoiler__icon--close">
@@ -24,7 +24,7 @@ export default class Spoiler extends Base {
 							${content}
 						</div>
 						<div class="wikia-spoiler__forward">
-							Fast-forward by ${moveTo} seconds 
+							Fast-forward by ${moveTo - displayAt} seconds 
 							<span class="wikia-spoiler__icon--forward">
 								<img src="https://cdn3.iconfinder.com/data/icons/line/36/fastforward-512.png" />
 							</span>
@@ -37,7 +37,7 @@ export default class Spoiler extends Base {
 	}
 
 	attachListeners() {
-		this.element.querySelector('.wikia-spoiler__icon--forward').addEventListener('click', () => {
+		this.element.querySelector('.wikia-spoiler__forward').addEventListener('click', () => {
 			this.playerInstance.trigger('spoilerFastForwarded');
 			this.playerInstance.seek(this.moveTo);
 			this.remove();
