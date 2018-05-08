@@ -18,10 +18,6 @@ function wikiaJWPlayerSettingsPlugin(player, config, div) {
 	this.player.on('levels', this.onQualityLevelsChange.bind(this));
 	this.player.on('relatedVideoPlay', this.onCaptionsChange.bind(this));
 	this.player.once('ready', this.onCaptionsChange.bind(this));
-
-	document.addEventListener('click', this.documentClickHandler);
-	// fixes issue when opening the menu on iPhone 5, executing documentClickHandler twice doesn't break anything
-	document.addEventListener('touchend', this.documentClickHandler);
 }
 
 wikiaJWPlayerSettingsPlugin.prototype.isSettingsMenuOrSettingsButton = function (element) {
@@ -38,9 +34,11 @@ wikiaJWPlayerSettingsPlugin.prototype.getSettingsButtonElement = function () {
 };
 
 wikiaJWPlayerSettingsPlugin.prototype.documentClickHandler = function (event) {
-	// check if user didn't click the settings menu or settings button and if settings menu is open
-	if (!this.isSettingsMenuOrSettingsButton(event.target) && this.container.style.display) {
+	if (this.wikiaSettingsElement !== event.target && !this.wikiaSettingsElement.contains(event.target)) {
 		this.close();
+
+		document.removeEventListener('click', this.documentClickHandler);
+		document.removeEventListener('touchend', this.documentClickHandler);
 	}
 };
 
@@ -52,8 +50,10 @@ wikiaJWPlayerSettingsPlugin.prototype.addButton = function () {
 	this.player.addButton(settingsIcon.outerHTML, this.config.i18n.settings, function (evt) {
 		if (!this.wikiaSettingsElement.style.display) {
 			this.open(evt.currentTarget);
-		} else {
-			this.close();
+			document.addEventListener('click', this.documentClickHandler);
+			// fixes issue when opening the menu on iPhone 5, executing documentClickHandler twice doesn't break anything
+			document.addEventListener('touchend', this.documentClickHandler);
+			evt.sourceEvent.stopPropagation();
 		}
 	}.bind(this), this.buttonID, 'wikia-jw-button');
 };
