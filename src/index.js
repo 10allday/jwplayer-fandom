@@ -1,3 +1,5 @@
+import wikiaJWPlayerIdleScreen from './idle-screen'
+
 var loadCallbacks = [];
 
 window.wikiaJWPlayer = function (elementId, options, callback) {

@@ -1,4 +1,4 @@
-function wikiaJWPlayerIdleScreen(playerInstance, i18n) {
+export default function wikiaJWPlayerIdleScreen(playerInstance, i18n) {
 	function showDuration() {
 		var id = playerInstance.id,
 			playerElement = document.getElementById(id),
@@ -38,4 +38,4 @@ function wikiaJWPlayerIdleScreen(playerInstance, i18n) {
 	playerInstance.on('ready', showDuration);
 }
 
-window.wikiaJWPlayerIdleScreen = wikiaJWPlayerIdleScreen;
+// window.wikiaJWPlayerIdleScreen = wikiaJWPlayerIdleScreen;
