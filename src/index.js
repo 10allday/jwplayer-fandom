@@ -61,6 +61,7 @@ window.wikiaJWPlayer = function (elementId, options, callback) {
 	 * @return {*}
 	 */
 	function setupPlayer(elementId, options, logger, lang, i18n) {
+		console.log('==============================================================================================================================');
 		var playerInstance = jwplayer(elementId),
 			videoId = options.videoDetails.playlist[0].mediaid,
 			willAutoplay = options.autoplay,
@@ -116,7 +117,8 @@ window.wikiaJWPlayer = function (elementId, options, callback) {
 				autoplaytimer: options.related.time || 3,
 				file: '//cdn.jwplayer.com/v2/playlists/' + options.related.playlistId + '?related_media_id=' + videoId,
 				oncomplete: options.related.autoplay ? 'autoplay' : 'show',
-				autoplaymessage: i18n.nextUpInSeconds
+				autoplaymessage: i18n.nextUpInSeconds,
+				displayMode: options.related.displayMode ? options.related.displayMode : 'none'
 			};
 		}
 
